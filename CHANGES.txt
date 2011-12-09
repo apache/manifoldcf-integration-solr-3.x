@@ -1,5 +1,7 @@
-Apache Solr 3.x ManifoldCF Plugin change Log
+Apache ManifoldCF Solr 3.x Plugin change Log
 $Id$
 
 ======================= 0.1-dev =====================
 
+Initial commit.
+(Karl Wright)

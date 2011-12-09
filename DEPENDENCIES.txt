@@ -1,9 +1,9 @@
-Apache Solr-3.x ManifoldCF Plugin requires
+Apache ManifoldCF Solr-3.x Plugin requires
 ----------------------------------------
 * JRE 1.6 or above
 * svn command line tools
 
-For building Apache Solr-3.x ManifoldCF Plugin:
+For building Apache ManifoldCF Solr-3.x Plugin:
 --------------------------------------------
 
 * Look at README.txt
