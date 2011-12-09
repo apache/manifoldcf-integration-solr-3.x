@@ -91,8 +91,8 @@
         <zipfileset dir="." prefix="apache-manifoldcf-solr-3.x-plugin-${release-version}">
           <exclude name="/solr/"/>
           <exclude name="/mcf/"/>
-          <exclude name="/apache-manifoldcf-solr-3.x-plugin-*"/>
-          <exclude name="/build.xml"/>
+          <exclude name="apache-manifoldcf-solr-3.x-plugin-*"/>
+          <exclude name="build.xml"/>
         </zipfileset>
       </zip>
     </target>
@@ -102,8 +102,8 @@
         <tarfileset dir="." prefix="apache-manifoldcf-solr-3.x-plugin-${release-version}">
           <exclude name="/solr/"/>
           <exclude name="/mcf/"/>
-          <exclude name="/apache-manifoldcf-solr-3.x-plugin-*"/>
-          <exclude name="/build.xml"/>
+          <exclude name="apache-manifoldcf-solr-3.x-plugin-*"/>
+          <exclude name="build.xml"/>
         </tarfileset>
       </tar>
   </target>
