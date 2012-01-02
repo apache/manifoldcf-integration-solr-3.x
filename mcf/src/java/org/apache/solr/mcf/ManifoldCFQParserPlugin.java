@@ -34,6 +34,9 @@ import org.apache.solr.common.params.SolrParams;
 import org.apache.solr.common.util.NamedList;
 import org.apache.solr.handler.component.ResponseBuilder;
 import org.apache.solr.handler.component.SearchComponent;
+import org.apache.solr.core.CloseHook;
+import org.apache.solr.util.plugin.SolrCoreAware;
+import org.apache.solr.core.SolrCore;
 import org.apache.commons.httpclient.*;
 import org.apache.commons.httpclient.methods.*;
 import org.apache.commons.httpclient.params.*;
@@ -73,26 +76,12 @@ public class ManifoldCFQParserPlugin extends QParserPlugin
   String fieldAllowShare = null;
   String fieldDenyShare = null;
   int socketTimeOut;
-  MultiThreadedHttpConnectionManager httpConnectionManager;
-  HttpClient client;
+  MultiThreadedHttpConnectionManager httpConnectionManager = null;
+  HttpClient client = null;
   
   public ManifoldCFQParserPlugin()
   {
     super();
-    HttpConnectionManagerParams params = new HttpConnectionManagerParams();
-    params.setTcpNoDelay(true);
-    params.setStaleCheckingEnabled(false);
-    httpConnectionManager = new MultiThreadedHttpConnectionManager();
-    httpConnectionManager.setParams(params);
-    client = new HttpClient(httpConnectionManager);
-  }
-
-  @Override
-  protected void finalize()
-    throws Throwable
-  {
-    super.finalize();
-    httpConnectionManager.shutdown();
   }
 
   public void init(NamedList args)
@@ -112,12 +101,26 @@ public class ManifoldCFQParserPlugin extends QParserPlugin
     fieldDenyDocument = denyAttributePrefix+"document";
     fieldAllowShare = allowAttributePrefix+"share";
     fieldDenyShare = denyAttributePrefix+"share";
+
+    // Initialize the connection pool
+    HttpConnectionManagerParams params = new HttpConnectionManagerParams();
+    params.setTcpNoDelay(true);
+    params.setStaleCheckingEnabled(false);
+    httpConnectionManager = new MultiThreadedHttpConnectionManager();
+    httpConnectionManager.setParams(params);
+    // MHL to set the pool size
+    client = new HttpClient(httpConnectionManager);
   }
 
   @Override
   public QParser createParser(String qstr, SolrParams localParams, SolrParams params, SolrQueryRequest req)
   {
     return new ManifoldCFQueryParser(qstr,localParams,params,req);
+  }
+
+  public void inform(SolrCore core)
+  {
+    core.addCloseHook(new CloseHandler());
   }
 
   protected class ManifoldCFQueryParser extends QParser
@@ -305,5 +308,32 @@ public class ManifoldCFQParserPlugin extends QParserPlugin
       }
     }
   }
-  
+
+  /** CloseHook implementation.
+  */
+  protected class CloseHandler extends CloseHook
+  {
+    public CloseHandler()
+    {
+    }
+    
+    @Override
+    public void preClose(SolrCore core)
+    {
+    }
+    
+    @Override
+    public void postClose(SolrCore core)
+    {
+      // Close the connection pool
+      if (httpConnectionManager != null)
+      {
+        httpConnectionManager.shutdown();
+        httpConnectionManager = null;
+        client = null;
+      }
+    }
+    
+  }
+
 }
