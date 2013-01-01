@@ -1,7 +1,12 @@
 Apache ManifoldCF Solr 3.x Plugin change Log
 $Id$
 
-======================= 0.2-incubating-dev =====================
+======================= 0.3-dev =====================
+
+Update to Solr 3.6.2.
+(Karl Wright)
+
+======================= Release 0.2 =====================
 
 CONNECTORS-485: Update to Solr 3.6.
 (Karl Wright)
