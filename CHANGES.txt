@@ -1,4 +1,4 @@
-Apache ManifoldCF Solr 3.x Plugin change Log
+Apache ManifoldCF Plugin for Apache Solr 3.x change Log
 $Id$
 
 ======================= 0.5-dev =====================
