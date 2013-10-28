@@ -305,11 +305,8 @@ public class ManifoldCFQParserPlugin extends QParserPlugin
       int i = 0;
       for (String domain : domainMap.keySet())
       {
-        if (i = 0)
-        {
+        if (i == 0)
           urlBuffer.append("?");
-          first = false;
-        }
         else
           urlBuffer.append("&");
         urlBuffer.append("username_").append(Integer.toString(i)).append("=").append(URLEncoder.encode(domainMap.get(domain),"utf-8")).append("&")
@@ -352,7 +349,7 @@ public class ManifoldCFQParserPlugin extends QParserPlugin
                 else
                 {
                   // It probably says something about the state of the authority(s) involved, so log it
-                  LOG.info("For user '"+authenticatedUserName+"', saw authority response "+line);
+                  LOG.info("Saw authority response "+line);
                 }
               }
               return tokenList;
