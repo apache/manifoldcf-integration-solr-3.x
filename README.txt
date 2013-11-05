@@ -13,6 +13,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+Compatibility
+------------
+
+This version of this component is only compatible with ManifoldCF 1.5 and above,
+and cannot be used with earlier releases of ManifoldCF.
 
 Instructions for Building Apache ManifoldCF Plugin for Apache Solr 3.x from Source
 ------------------------------------------------------------------------------
