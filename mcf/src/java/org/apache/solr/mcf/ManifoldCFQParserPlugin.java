@@ -183,6 +183,7 @@ public class ManifoldCFQParserPlugin extends QParserPlugin
           if (domain == null)
             domain = "";
           domainMap.put(domain,userName);
+          i++;
         }
       }
       

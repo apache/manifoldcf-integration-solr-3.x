@@ -3,6 +3,9 @@ $Id$
 
 ======================= Release 1.1 =====================
 
+CONNECTORS-825: Fix infinite loop in new code.
+(Shinichiro Abe)
+
 Add functionality making the plugin compatible with multi-domain
 features of ManifoldCF.  Specifically, allow multiple domain/username
 tuples to be passed in the request.
