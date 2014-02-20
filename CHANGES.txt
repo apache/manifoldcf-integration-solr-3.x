@@ -3,6 +3,11 @@ $Id$
 
 ======================= 1.2-dev =====================
 
+CONNECTORS-886: Provide [allow|deny]_token_directory_N fields.
+With mcf.auth.directoryCount param, we can control
+token_directory fields filtering. 
+(Shinichiro Abe)
+
 ======================= Release 1.1 =====================
 
 CONNECTORS-825: Fix infinite loop in new code.
