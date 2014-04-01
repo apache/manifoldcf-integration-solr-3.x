@@ -327,6 +327,7 @@ public class ManifoldCFSearchComponent extends SearchComponent implements SolrCo
     return "$URL$";
   }
 
+  @Override
   public void inform(SolrCore core)
   {
     core.addCloseHook(new CloseHandler());
