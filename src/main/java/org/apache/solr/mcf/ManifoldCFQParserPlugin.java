@@ -21,21 +21,11 @@ import org.apache.lucene.search.*;
 import org.apache.lucene.queryParser.ParseException;
 import org.apache.solr.search.QParserPlugin;
 import org.apache.solr.search.QParser;
-import org.apache.solr.common.params.CommonParams;
-import org.apache.solr.common.params.MapSolrParams;
 import org.apache.solr.common.params.SolrParams;
 import org.apache.solr.common.util.NamedList;
-import org.apache.solr.common.util.StrUtils;
 import org.apache.solr.request.SolrQueryRequest;
 import org.apache.solr.common.SolrException;
-import org.apache.solr.common.params.CommonParams;
-import org.apache.solr.common.params.ShardParams;
-import org.apache.solr.common.params.SolrParams;
-import org.apache.solr.common.util.NamedList;
-import org.apache.solr.handler.component.ResponseBuilder;
-import org.apache.solr.handler.component.SearchComponent;
 import org.apache.solr.core.CloseHook;
-import org.apache.solr.util.plugin.SolrCoreAware;
 import org.apache.solr.core.SolrCore;
 import org.apache.commons.httpclient.*;
 import org.apache.commons.httpclient.methods.*;
@@ -94,7 +84,7 @@ public class ManifoldCFQParserPlugin extends QParserPlugin
   {
     super();
   }
-
+  @Override
   public void init(NamedList args)
   {
     authorityBaseURL = (String)args.get("AuthorityServiceBaseURL");
@@ -181,7 +171,7 @@ public class ManifoldCFQParserPlugin extends QParserPlugin
         while (true)
         {
           String userName = params.get(AUTHENTICATED_USER_NAME_PREFIX+i);
-          String domain = params.get(AUTHENTICATED_USER_DOMAIN+i);
+          String domain = params.get(AUTHENTICATED_USER_DOMAIN_PREFIX+i);
           if (userName == null)
             break;
           if (domain == null)
