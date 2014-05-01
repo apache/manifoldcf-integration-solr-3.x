@@ -198,26 +198,25 @@ public class ManifoldCFSearchComponent extends SearchComponent implements SolrCo
       {
         // Only return 'public' documents (those with no security tokens at all)
         LOG.info("Group tokens received from caller");
-        for (String passedToken : passedTokens)
-        {
-          userAccessTokens.add(passedToken);
-        }
+        userAccessTokens.addAll(Arrays.asList(passedTokens));
       }
     }
     else
     {
-      StringBuilder sb = new StringBuilder("[");
-      boolean first = true;
-      for (String domain : domainMap.keySet())
-      {
-        if (!first)
-          sb.append(",");
-        else
-          first = false;
-        sb.append(domain).append(":").append(domainMap.get(domain));
+      if(LOG.isInfoEnabled()){
+        StringBuilder sb = new StringBuilder("[");
+        boolean first = true;
+        for (String domain : domainMap.keySet())
+        {
+          if (!first)
+            sb.append(",");
+          else
+            first = false;
+          sb.append(domain).append(":").append(domainMap.get(domain));
+        }
+        sb.append("]");
+        LOG.info("Trying to match docs for user '"+sb.toString()+"'");
       }
-      sb.append("]");
-      LOG.info("Trying to match docs for user '"+sb.toString()+"'");
       // Valid authenticated user name.  Look up access tokens for the user.
       // Check the configuration arguments for validity
       if (authorityBaseURL == null)
