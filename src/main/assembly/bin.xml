@@ -40,6 +40,15 @@
     </moduleSets>
     <fileSets>
         <fileSet>
+            <directory>target</directory>
+            <outputDirectory/>
+            <fileMode>644</fileMode>
+            <directoryMode>755</directoryMode>
+            <includes>
+                <include>${project.artifactId}-${project.version}.jar</include>
+            </includes>
+        </fileSet>
+        <fileSet>
             <includes>
                 <include>**/target/*.jar</include>
                 <include>README.txt</include>
