@@ -112,7 +112,7 @@ public class ManifoldCFQParserPlugin extends QParserPlugin
         // Initialize the connection pool
         HttpConnectionManagerParams params = new HttpConnectionManagerParams();
         params.setTcpNoDelay(true);
-        params.setStaleCheckingEnabled(false);
+        params.setStaleCheckingEnabled(true);
         params.setDefaultMaxConnectionsPerHost(poolSize);
         params.setMaxTotalConnections(poolSize);
         httpConnectionManager = new MultiThreadedHttpConnectionManager();

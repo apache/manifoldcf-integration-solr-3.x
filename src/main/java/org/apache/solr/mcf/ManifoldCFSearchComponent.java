@@ -121,7 +121,7 @@ public class ManifoldCFSearchComponent extends SearchComponent implements SolrCo
     // Initialize the connection pool
     HttpConnectionManagerParams params = new HttpConnectionManagerParams();
     params.setTcpNoDelay(true);
-    params.setStaleCheckingEnabled(false);
+    params.setStaleCheckingEnabled(true);
     params.setDefaultMaxConnectionsPerHost(poolSize);
     params.setMaxTotalConnections(poolSize);
     httpConnectionManager = new MultiThreadedHttpConnectionManager();
