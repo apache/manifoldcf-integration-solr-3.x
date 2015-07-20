@@ -1,9 +1,6 @@
 Apache ManifoldCF Plugin for Apache Solr 3.x change Log
 $Id$
 
-======================= 2.3-SNAPSHOT =====================
-
-
 ======================= Release 2.2 =====================
 
 CONNECTORS-1194: Stale connection checks enabled.
